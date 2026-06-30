@@ -1,0 +1,2697 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     CA2R — Site Vitrine RESPONSIVE OPTIMISÉ
+     Corrections complètes : mobile, iOS Safari, tablettes, desktop
+     ============================================================ -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <!-- ✅ FIX: viewport corrigé pour iOS (user-scalable=no évite le zoom double-tap) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- ✅ FIX: iOS Safari status bar -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>CA2R | Revêtement Réfractaire – Porto-Novo, Bénin</title>
+  <meta name="description" content="CA2R, expert en revêtement réfractaire, béton réfractaire et maintenance thermique à Porto-Novo. Interventions en Afrique de l'Ouest." />
+  <meta name="keywords" content="revêtement réfractaire, béton réfractaire, briques réfractaires, maintenance thermique, Bénin, Porto-Novo, Afrique de l'Ouest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- ✅ FIX: Ajout de font-display=swap pour éviter FOUT sur iOS -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       VARIABLES & RESET
+    ============================================================ */
+    :root {
+      --noir: #080808;
+      --gris-dark: #141414;
+      --gris-mid: #1e1e1e;
+      --gris-text: #888;
+      --orange: #e85d04;
+      --orange-vif: #ff6b1a;
+      --blanc: #f0ede8;
+      --blanc-pur: #fff;
+      --F: 'Bebas Neue', sans-serif;
+      --FC: 'Barlow Condensed', sans-serif;
+      --FB: 'Barlow', sans-serif;
+      /* ✅ FIX: Espacement safe-area pour les encoches iPhone */
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+    }
+
+    /* ✅ FIX: Reset global avec box-sizing et overflow-x bloqué */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      /* ✅ FIX: Empêche le scroll horizontal global */
+      overflow-x: hidden;
+      /* ✅ FIX: iOS momentum scroll */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    body {
+      font-family: var(--FB);
+      background: var(--noir);
+      color: var(--blanc);
+      /* ✅ FIX: overflow-x bloqué sur le body aussi */
+      overflow-x: hidden;
+      line-height: 1.6;
+      /* ✅ FIX: antialiasing sur iOS/macOS */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      /* ✅ FIX: Empêche le redimensionnement de texte sur iOS en paysage */
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    img {
+      display: block;
+      /* ✅ FIX: Images toujours responsive */
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      /* ✅ FIX: Padding responsive avec safe-area pour les encoches */
+      padding: 0 clamp(16px, 4vw, 24px);
+    }
+
+    .tag {
+      font-family: var(--FC);
+      font-size: clamp(10px, 2.5vw, 11px);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .h2 {
+      font-family: var(--F);
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: 1px;
+      color: var(--blanc);
+    }
+
+    .h2 em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    /* ✅ FIX: clip-path simplifié pour la compatibilité iOS Safari */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--FC);
+      font-size: clamp(12px, 3vw, 14px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: clamp(12px, 3vw, 14px) clamp(20px, 5vw, 32px);
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      /* ✅ FIX: clip-path retiré sur mobile car bugué sur Safari iOS — remplacé par border-radius */
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      /* ✅ FIX: Empêche le zoom sur tap iOS */
+      touch-action: manipulation;
+      white-space: nowrap;
+    }
+
+    @supports (clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)) {
+      @media (min-width: 769px) {
+        .btn {
+          clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+          border-radius: 0;
+        }
+      }
+    }
+
+    .btn-orange {
+      background: var(--orange);
+      color: var(--blanc-pur);
+    }
+
+    .btn-orange:hover {
+      background: var(--orange-vif);
+      transform: translateY(-2px);
+    }
+
+    /* ✅ FIX: Active state pour mobile (pas de hover) */
+    .btn-orange:active {
+      background: var(--orange-vif);
+      transform: translateY(0);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--blanc);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-ghost:hover,
+    .btn-ghost:active {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(8, 8, 8, 0.96);
+      /* ✅ FIX: backdrop-filter avec préfixe webkit pour Safari */
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232, 93, 4, 0.15);
+      /* ✅ FIX: padding-top pour l'encoche iPhone */
+      padding-top: var(--safe-top);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px clamp(16px, 4vw, 24px);
+      gap: 16px;
+    }
+
+    .logo {
+      font-family: 'Black Ops One', fantasy, sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      letter-spacing: 2px;
+      color: var(--blanc);
+      text-decoration: none;
+      display: inline-block;
+      line-height: 1;
+      /* ✅ FIX: transform scale retiré — causait des problèmes de layout sur mobile */
+      flex-shrink: 0;
+    }
+
+    .logo em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    .nav-links {
+      display: -webkit-flex;
+      display: flex;
+      gap: clamp(16px, 2.5vw, 28px);
+      list-style: none;
+      /* ✅ FIX: flex-wrap pour les écrans intermédiaires */
+      flex-wrap: nowrap;
+    }
+
+    .nav-links a {
+      font-family: var(--FC);
+      font-size: clamp(10px, 1.5vw, 12px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gris-text);
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    #nav-cta {
+      display: none;
+      padding: 10px clamp(14px, 2.5vw, 20px);
+      font-size: clamp(10px, 1.5vw, 12px);
+      flex-shrink: 0;
+    }
+
+    .hamburger {
+      display: none;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      /* ✅ FIX: Taille minimum pour facilité le tap mobile */
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      touch-action: manipulation;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--blanc);
+      transition: all 0.3s;
+    }
+
+    /* ✅ FIX: Menu mobile amélioré avec scroll si besoin */
+    .mobile-menu {
+      display: none;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      background: var(--gris-dark);
+      padding: 8px clamp(16px, 4vw, 24px) clamp(16px, 4vw, 24px);
+      gap: 0;
+      /* ✅ FIX: max-height + scroll pour menus très longs */
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
+      /* ✅ FIX: padding-bottom safe-area pour les iPhones avec barre de geste */
+      padding-bottom: calc(16px + var(--safe-bottom));
+    }
+
+    .mobile-menu.open {
+      display: -webkit-flex;
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: var(--FC);
+      font-size: clamp(15px, 4vw, 16px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blanc);
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      /* ✅ FIX: min-height pour zones de tap accessibles */
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #accueil {
+      position: relative;
+      /* ✅ FIX: min-height avec -webkit-fill-available pour iOS Safari */
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('image/IMG_20260503_163645_772.jpg');
+      background-size: cover;
+      background-position: center;
+      /* ✅ FIX: background-attachment: fixed bugué sur iOS → retiré */
+    }
+
+    .hero-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(8, 8, 8, 0.93) 0%,
+        rgba(8, 8, 8, 0.72) 55%,
+        rgba(8, 8, 8, 0.25) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+      /* ✅ FIX: padding-top adaptatif pour la navbar fixe */
+      padding-top: clamp(90px, 15vw, 120px);
+      padding-bottom: clamp(40px, 8vw, 60px);
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232, 93, 4, 0.18);
+      border: 1px solid rgba(232, 93, 4, 0.35);
+      padding: 6px clamp(12px, 3vw, 16px);
+      margin-bottom: clamp(16px, 4vw, 24px);
+      font-family: var(--FC);
+      font-size: clamp(9px, 2.5vw, 11px);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      /* ✅ FIX: flex-wrap pour ne pas dépasser sur petit écran */
+      flex-wrap: wrap;
+    }
+
+    .hero-badge::before {
+      content: '●';
+      animation: blink 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .hero-title {
+      font-family: var(--F);
+      /* ✅ FIX: clamp plus agressif pour éviter débordement sur mobile */
+      font-size: clamp(2.8rem, 10vw, 8.5rem);
+      line-height: 0.88;
+      letter-spacing: 1px;
+      margin-bottom: clamp(16px, 4vw, 24px);
+      /* ✅ FIX: word-break pour les très petits écrans */
+      word-break: break-word;
+    }
+
+    .hero-title .l1 { color: rgba(255, 255, 255, 0.2); display: block; }
+    .hero-title .l2 { color: var(--orange); display: block; }
+    .hero-title .l3 { color: var(--blanc); display: block; }
+
+    .hero-sub {
+      font-size: clamp(0.875rem, 2.5vw, 1.05rem);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 520px;
+      margin-bottom: clamp(24px, 5vw, 36px);
+      border-left: 3px solid var(--orange);
+      padding-left: clamp(12px, 3vw, 18px);
+    }
+
+    .hero-actions {
+      display: -webkit-flex;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: clamp(32px, 8vw, 56px);
+    }
+
+    .hero-stats {
+      display: -webkit-flex;
+      display: flex;
+      /* ✅ FIX: gap responsive + flex-wrap */
+      gap: clamp(20px, 5vw, 36px);
+      flex-wrap: wrap;
+      padding-top: clamp(20px, 5vw, 36px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-num {
+      font-family: var(--F);
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-family: var(--FC);
+      font-size: clamp(9px, 2vw, 10px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gris-text);
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       TICKER
+    ============================================================ */
+    .ticker-wrap {
+      background: var(--orange);
+      overflow: hidden;
+      padding: 11px 0;
+    }
+
+    .ticker-track {
+      display: -webkit-flex;
+      display: flex;
+      animation: ticker 22s linear infinite;
+      width: max-content;
+      /* ✅ FIX: will-change pour meilleures performances GPU */
+      will-change: transform;
+    }
+
+    .ticker-item {
+      font-family: var(--FC);
+      font-size: clamp(10px, 2.5vw, 12px);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--noir);
+      padding: 0 clamp(16px, 4vw, 28px);
+      white-space: nowrap;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       À PROPOS
+    ============================================================ */
+    #apropos {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: var(--gris-dark);
+    }
+
+    .apropos-grid {
+      display: -webkit-flex;
+      display: flex;
+      /* ✅ FIX: flex au lieu de grid pour meilleure compatibilité iOS */
+      flex-wrap: wrap;
+      gap: clamp(32px, 6vw, 70px);
+      align-items: center;
+    }
+
+    .apropos-img-wrap {
+      position: relative;
+      /* ✅ FIX: flex-basis au lieu de grid column */
+      flex: 1 1 300px;
+      min-width: 0;
+    }
+
+    /* ✅ FIX: Décoration désactivée sur mobile pour éviter débordement */
+    @media (min-width: 769px) {
+      .apropos-img-wrap::before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: -20px;
+        right: 20px;
+        bottom: -20px;
+        border: 2px solid rgba(232, 93, 4, 0.3);
+        z-index: 0;
+      }
+    }
+
+    .apropos-img-wrap img {
+      position: relative;
+      z-index: 1;
+      height: clamp(280px, 50vw, 480px);
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .img-badge {
+      position: absolute;
+      bottom: clamp(-20px, -3vw, -12px);
+      right: clamp(10px, 3vw, 20px);
+      z-index: 2;
+      background: var(--orange);
+      color: var(--blanc-pur);
+      font-family: var(--FC);
+      font-size: clamp(11px, 2.5vw, 13px);
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 8px clamp(12px, 3vw, 20px);
+    }
+
+    .apropos-text {
+      flex: 1 1 300px;
+      min-width: 0;
+    }
+
+    .apropos-text .h2 {
+      margin-bottom: clamp(14px, 3vw, 20px);
+    }
+
+    .apropos-text p {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 14px;
+      font-weight: 300;
+      font-size: clamp(13px, 2.5vw, 15px);
+    }
+
+    .apropos-text strong {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    .valeurs {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: clamp(20px, 4vw, 28px);
+    }
+
+    .val-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-left: 3px solid var(--orange);
+      padding: clamp(12px, 3vw, 16px);
+      /* ✅ FIX: flex-basis pour 2 colonnes sur desktop, 1 sur mobile */
+      flex: 1 1 calc(50% - 6px);
+      min-width: 140px;
+    }
+
+    .val-item h4 {
+      font-family: var(--FC);
+      font-size: clamp(11px, 2.5vw, 13px);
+      letter-spacing: 1px;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .val-item p {
+      font-size: clamp(11px, 2vw, 12px);
+      color: var(--gris-text);
+      margin: 0;
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    #services {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: var(--noir);
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: clamp(36px, 8vw, 56px);
+    }
+
+    .section-head p {
+      color: var(--gris-text);
+      margin-top: 14px;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: clamp(13px, 2.5vw, 15px);
+    }
+
+    /* ✅ FIX: Grid services entièrement responsive */
+    .services-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+
+    .svc-card {
+      position: relative;
+      overflow: hidden;
+      /* ✅ FIX: flex-basis responsive — 2 colonnes sur tablette, 1 sur mobile */
+      flex: 1 1 260px;
+      min-height: clamp(300px, 50vw, 440px);
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: transform 0.3s;
+    }
+
+    .svc-card:hover {
+      transform: scale(1.02);
+      z-index: 2;
+    }
+
+    .svc-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s;
+    }
+
+    .svc-card:hover .svc-bg {
+      transform: scale(1.08);
+    }
+
+    .svc-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(8, 8, 8, 0.97) 0%,
+        rgba(8, 8, 8, 0.55) 50%,
+        rgba(8, 8, 8, 0.1) 100%
+      );
+    }
+
+    .svc-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(18px, 4vw, 28px);
+    }
+
+    .svc-num {
+      font-family: var(--F);
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      color: var(--orange);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .svc-card h3 {
+      font-family: var(--FC);
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--blanc);
+      margin-bottom: 10px;
+    }
+
+    .svc-card p {
+      font-size: clamp(12px, 2.5vw, 13px);
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .svc-list {
+      list-style: none;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .svc-list li {
+      font-size: clamp(11px, 2vw, 12px);
+      color: rgba(255, 255, 255, 0.45);
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .svc-list li::before {
+      content: '▸';
+      color: var(--orange);
+      font-size: 9px;
+      flex-shrink: 0;
+    }
+
+    .bg-s1 { background-image: url('image/IMG-20260330-WA0099.jpg'); }
+    .bg-s2 { background-image: url('image/IMG_20260503_173340_952.jpg'); }
+    .bg-s3 { background-image: url('image/IMG-20260422-WA0057.jpg'); }
+    .bg-s4 { background-image: url('image/IMG-20260422-WA0066.jpg'); }
+
+    /* ============================================================
+       SECTEURS
+    ============================================================ */
+    #secteurs {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: var(--gris-dark);
+    }
+
+    /* ✅ FIX: Grid secteurs responsive */
+    .secteurs-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: clamp(30px, 6vw, 50px);
+    }
+
+    .sect-card {
+      position: relative;
+      overflow: hidden;
+      /* ✅ FIX: flex-basis adaptative */
+      flex: 1 1 clamp(150px, 30%, 210px);
+      height: clamp(200px, 35vw, 270px);
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: transform 0.3s;
+    }
+
+    .sect-card:hover {
+      transform: translateY(-4px);
+      z-index: 2;
+    }
+
+    .sect-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s;
+      filter: grayscale(25%);
+    }
+
+    .sect-card:hover .sect-bg {
+      transform: scale(1.1);
+      filter: grayscale(0%);
+    }
+
+    .sect-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8, 8, 8, 0.9) 0%, rgba(8, 8, 8, 0.35) 60%, transparent 100%);
+    }
+
+    .sect-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(14px, 3vw, 20px) clamp(12px, 3vw, 18px);
+    }
+
+    .sect-icon {
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .sect-card h3 {
+      font-family: var(--FC);
+      font-size: clamp(0.875rem, 2.5vw, 1rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--blanc);
+      margin-bottom: 4px;
+    }
+
+    .sect-card p {
+      font-size: clamp(11px, 2vw, 12px);
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .bg-sec1 { background-image: url('https://lcmi-four.com/storage/installations/32/3ZyN81S7dKIKSUjXqqVErgUqDbBs4OAjuYa22Yaf.jpeg'); }
+    .bg-sec2 { background-image: url('https://npnpk.com/wp-content/uploads/2024/07/rotary-dryer-7.jpg'); }
+    .bg-sec3 { background-image: url('https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=70'); }
+    .bg-sec4 { background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=70'); }
+    .bg-sec5 { background-image: url('https://www.isb-technologies.fr/wp-content/uploads/Four-alimentaire.jpg'); }
+
+    /* ============================================================
+       SÉCURITÉ
+    ============================================================ */
+    #securite {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: var(--noir);
+    }
+
+    .securite-hero {
+      position: relative;
+      height: clamp(220px, 40vw, 320px);
+      margin-bottom: clamp(36px, 6vw, 60px);
+      overflow: hidden;
+    }
+
+    .securite-hero img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      filter: brightness(0.45) saturate(0.5);
+    }
+
+    .securite-hero-text {
+      position: absolute;
+      inset: 0;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      text-align: center;
+      padding: clamp(16px, 4vw, 24px);
+    }
+
+    .securite-hero-text h2 {
+      font-family: var(--F);
+      font-size: clamp(1.6rem, 6vw, 4.5rem);
+      color: var(--blanc);
+    }
+
+    .securite-hero-text h2 em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    .securite-hero-text p {
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 600px;
+      margin-top: 12px;
+      font-size: clamp(13px, 2.5vw, 15px);
+    }
+
+    .alert-bar {
+      background: rgba(232, 93, 4, 0.1);
+      border: 1px solid rgba(232, 93, 4, 0.3);
+      border-left: 4px solid var(--orange);
+      padding: auto clamp(12px, 3vw, 18px);
+      display: -webkit-flex;
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(12px, 3vw, 18px);
+      margin-bottom: clamp(32px, 6vw, 48px);
+    }
+
+    .alert-bar p {
+      font-size: center clamp(12px, 2.5vw, 14px);
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.7;
+    }
+
+    .alert-bar strong {
+      color: var(--orange);
+    }
+
+    /* ✅ FIX: Grid EPI responsive */
+    .epi-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+
+    .epi-card {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      overflow: hidden;
+      /* ✅ FIX: flex-basis pour responsive */
+      flex: 1 1 clamp(200px, 45%, 300px);
+    }
+
+    .epi-img {
+      /* ✅ FIX: hauteur responsive */
+      height: clamp(160px, 30vw, 220px);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .epi-img img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+      filter: grayscale(15%);
+    }
+
+    .epi-card:hover .epi-img img {
+      transform: scale(1.07);
+      filter: grayscale(0%);
+    }
+
+    .epi-body {
+      background: var(--gris-dark);
+      padding: clamp(16px, 4vw, 22px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 3px solid var(--orange);
+      flex: 1;
+    }
+
+    .epi-body h4 {
+      font-family: var(--FC);
+      font-size: clamp(0.875rem, 3vw, 1rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .epi-body p {
+      font-size: clamp(12px, 2vw, 13px);
+      color: var(--gris-text);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       RÉALISATIONS
+    ============================================================ */
+    #realisations {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: var(--gris-dark);
+    }
+
+    .real-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(12px, 3vw, 20px);
+      margin-top: clamp(30px, 6vw, 50px);
+    }
+    .real-img{
+        display: block;
+      /* ✅ FIX: Images toujours responsive */
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      object-position: center 20%; 
+    }
+
+    .real-card {
+      background: var(--gris-mid);
+      overflow: hidden;
+      transition: transform 0.3s;
+      /* ✅ FIX: flex-basis responsive */
+      flex: 1 1 clamp(280px, 45%, 400px);
+      min-width: 0;
+    }
+
+    .real-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .real-thumb {
+      position: relative;
+      height: clamp(180px, 35vw, 230px);
+      overflow: hidden;
+    }
+
+    .real-thumb img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .real-card:hover .real-thumb img {
+      transform: scale(1.06);
+    }
+
+    .real-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8, 8, 8, 0.65) 0%, transparent 60%);
+    }
+
+    .real-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      background: var(--orange);
+      color: var(--blanc-pur);
+      font-family: var(--FC);
+      font-size: clamp(9px, 2vw, 10px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 4px clamp(8px, 2vw, 12px);
+      /* ✅ FIX: max-width pour éviter débordement */
+      max-width: calc(100% - 28px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .real-body {
+      padding: clamp(16px, 4vw, 22px);
+    }
+
+    .real-body h3 {
+      font-family: var(--FC);
+      font-size: clamp(1rem, 3vw, 1.1rem);
+      font-weight: 700;
+      color: var(--blanc);
+      margin-bottom: 6px;
+    }
+
+    .real-loc {
+      font-family: var(--FC);
+      font-size: clamp(10px, 2vw, 11px);
+      letter-spacing: 2px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .real-body p {
+      font-size: clamp(12px, 2vw, 13px);
+      color: var(--gris-text);
+      margin-bottom: 14px;
+    }
+
+    .real-metrics {
+      display: -webkit-flex;
+      display: flex;
+      gap: clamp(12px, 3vw, 18px);
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 14px;
+    }
+
+    .metric .val {
+      font-family: var(--F);
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      color: var(--orange);
+    }
+
+    .metric .lbl {
+      font-size: clamp(9px, 2vw, 10px);
+      color: var(--gris-text);
+      letter-spacing: 1px;
+    }
+
+    /* ============================================================
+       TÉMOIGNAGES
+    ============================================================ */
+    #temoignages {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: var(--noir);
+    }
+
+    .temo-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(12px, 3vw, 20px);
+      margin-top: clamp(30px, 6vw, 50px);
+    }
+
+    .temo-card {
+      background: var(--gris-dark);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: clamp(20px, 5vw, 30px);
+      position: relative;
+      flex: 1 1 clamp(260px, 45%, 400px);
+      min-width: 0;
+    }
+
+    .temo-card::before {
+      content: '"';
+      font-family: var(--F);
+      font-size: 7rem;
+      color: var(--orange);
+      opacity: 0.1;
+      position: absolute;
+      top: -15px;
+      left: 16px;
+      line-height: 1;
+    }
+
+    .temo-card p {
+      font-size: clamp(13px, 2.5vw, 14px);
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.8;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .temo-author {
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-av {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), #7a2f00);
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--F);
+      font-size: 1.1rem;
+      color: var(--blanc-pur);
+      flex-shrink: 0;
+    }
+
+    .author-info h5 {
+      font-family: var(--FC);
+      font-size: clamp(12px, 2.5vw, 14px);
+      font-weight: 700;
+      color: var(--blanc);
+    }
+
+    .author-info span {
+      font-size: clamp(10px, 2vw, 11px);
+      color: var(--gris-text);
+    }
+
+    .trust-bar {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(8px, 2vw, 14px);
+      justify-content: center;
+      margin-top: clamp(32px, 6vw, 52px);
+    }
+
+    .trust-item {
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: clamp(10px, 2.5vw, 13px) clamp(14px, 3vw, 20px);
+    }
+
+    .trust-item span {
+      font-family: var(--FC);
+      font-size: clamp(11px, 2.5vw, 13px);
+      letter-spacing: 1px;
+      color: var(--blanc);
+      white-space: nowrap;
+    }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    #contact {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: var(--gris-dark);
+    }
+
+    /* ✅ FIX: Grille contact responsive */
+    .contact-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(32px, 6vw, 56px);
+      align-items: flex-start;
+      margin-top: clamp(30px, 6vw, 50px);
+    }
+
+    .contact-left {
+      flex: 1 1 280px;
+      min-width: 0;
+    }
+
+    .contact-img {
+      height: clamp(160px, 30vw, 230px);
+      overflow: hidden;
+      margin-bottom: clamp(20px, 4vw, 30px);
+    }
+
+    .contact-img img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .contact-info h3 {
+      font-family: var(--F);
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      color: var(--blanc);
+      margin-bottom: 14px;
+    }
+
+    .contact-info > p {
+      color: var(--gris-text);
+      margin-bottom: 26px;
+      font-size: clamp(13px, 2.5vw, 14px);
+    }
+
+    .c-line {
+      display: -webkit-flex;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .c-icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      background: rgba(232, 93, 4, 0.12);
+      border: 1px solid rgba(232, 93, 4, 0.25);
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .c-text h4 {
+      font-family: var(--FC);
+      font-size: clamp(9px, 2vw, 10px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 3px;
+    }
+
+    .c-text p,
+    .c-text a {
+      font-size: clamp(13px, 2.5vw, 14px);
+      color: var(--blanc);
+      text-decoration: none;
+    }
+
+    .c-text a:hover {
+      color: var(--orange);
+    }
+
+    .whatsapp-btn {
+      display: -webkit-inline-flex;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 15px;
+      background: #25D366;
+      color: #fff;
+      font-family: var(--FC);
+      font-size: clamp(12px, 2.5vw, 14px);
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: clamp(11px, 3vw, 13px) clamp(18px, 4vw, 26px);
+      text-decoration: none;
+      margin-top: 16px;
+      transition: background 0.25s;
+      touch-action: manipulation;
+    }
+
+    .whatsapp-btn:hover,
+    .whatsapp-btn:active {
+      background: #1cb558;
+    }
+
+    /* ✅ FIX: Formulaire de contact */
+    .contact-form {
+      background: var(--gris-mid);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: clamp(24px, 5vw, 36px);
+      flex: 1 1 300px;
+      min-width: 0;
+    }
+
+    .contact-form h3 {
+      font-family: var(--F);
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      color: var(--blanc);
+      margin-bottom: 6px;
+    }
+
+    .form-sub {
+      font-size: clamp(11px, 2vw, 12px);
+      color: var(--gris-text);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: clamp(14px, 3vw, 18px);
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--FC);
+      font-size: clamp(9px, 2vw, 10px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gris-text);
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--blanc);
+      font-family: var(--FB);
+      font-size: clamp(13px, 2.5vw, 14px);
+      padding: clamp(10px, 2.5vw, 12px) clamp(10px, 2.5vw, 14px);
+      outline: none;
+      transition: border-color 0.25s;
+      /* ✅ FIX: appearance none + border-radius 0 pour iOS */
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
+      /* ✅ FIX: Empêche le zoom automatique sur focus iOS (font-size >= 16px) */
+      font-size: max(16px, clamp(13px, 2.5vw, 14px));
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--orange);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-group select option {
+      background: var(--gris-dark);
+    }
+
+    /* ✅ FIX: form-row responsive — 1 colonne sur mobile */
+    .form-row {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .form-row .form-group {
+      flex: 1 1 200px;
+      min-width: 0;
+    }
+
+    #form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    #form-success .s-icon {
+      font-size: 3rem;
+      margin-bottom: 14px;
+    }
+
+    #form-success h4 {
+      font-family: var(--F);
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    #form-success p {
+      color: var(--gris-text);
+    }
+
+    /* ============================================================
+       PROMOTEUR
+    ============================================================ */
+    #promoteur {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: var(--gris-dark);
+    }
+
+    .promo-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(32px, 6vw, 64px);
+      align-items: flex-start;
+      margin-top: clamp(36px, 6vw, 56px);
+    }
+
+    .promo-photo {
+      position: relative;
+      /* ✅ FIX: flex-basis responsive */
+      flex: 0 0 clamp(240px, 30%, 320px);
+    }
+
+    @media (min-width: 769px) {
+      .promo-photo::before {
+        content: '';
+        position: absolute;
+        top: -14px;
+        left: -14px;
+        right: 14px;
+        bottom: 14px;
+        border: 2px solid rgba(232, 93, 4, 0.35);
+        z-index: 0;
+      }
+    }
+
+    .promo-photo img {
+      width: 100%;
+      height: clamp(300px, 50vw, 420px);
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo-exp-badge {
+      position: absolute;
+      bottom: clamp(-20px, -3vw, -16px);
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      z-index: 2;
+      background: var(--orange);
+      color: var(--blanc-pur);
+      font-family: var(--F);
+      font-size: clamp(0.875rem, 3vw, 1rem);
+      letter-spacing: 1px;
+      padding: clamp(10px, 2.5vw, 12px) clamp(16px, 4vw, 22px);
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .promo-exp-badge span {
+      display: block;
+      font-family: var(--FC);
+      font-size: clamp(9px, 2vw, 10px);
+      letter-spacing: 3px;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .promo-content {
+      flex: 1 1 280px;
+      min-width: 0;
+      padding-top: 8px;
+    }
+
+    .promo-content .h2 {
+      margin-bottom: 8px;
+    }
+
+    .promo-name {
+      font-family: var(--FC);
+      font-size: clamp(12px, 2.5vw, 14px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: clamp(18px, 4vw, 28px);
+    }
+
+    .promo-intro {
+      font-size: clamp(13px, 2.5vw, 15px);
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(255, 255, 255, 0.6);
+      border-left: 3px solid var(--orange);
+      padding-left: clamp(12px, 3vw, 18px);
+      margin-bottom: clamp(24px, 5vw, 40px);
+    }
+
+    .promo-intro strong {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    .promo-company {
+      margin-bottom: clamp(20px, 4vw, 32px);
+    }
+
+    .company-header {
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .company-logo-badge {
+      background: var(--orange);
+      color: var(--blanc-pur);
+      font-family: var(--F);
+      font-size: clamp(0.875rem, 3vw, 1rem);
+      letter-spacing: 1px;
+      padding: 8px clamp(12px, 3vw, 16px);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .company-name {
+      font-family: var(--FC);
+      font-size: clamp(1rem, 3vw, 1.1rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--blanc);
+      word-break: break-word;
+    }
+
+    .company-sub {
+      font-size: clamp(10px, 2vw, 11px);
+      color: var(--gris-text);
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .promo-posts {
+      list-style: none;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      gap: 10px;
+      padding-left: 4px;
+    }
+
+    /* ✅ FIX: Grid posts responsive */
+    .promo-posts li {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: flex-start;
+      padding: clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-left: 3px solid rgba(232, 93, 4, 0.3);
+      transition: border-left-color 0.2s, background 0.2s;
+    }
+
+    .promo-posts li:hover {
+      border-left-color: var(--orange);
+      background: rgba(232, 93, 4, 0.05);
+    }
+
+    .post-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .post-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .post-title {
+      font-family: var(--FC);
+      font-size: clamp(12px, 2.5vw, 13px);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--blanc);
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .post-title-en {
+      font-size: clamp(10px, 2vw, 11px);
+      color: rgba(255, 255, 255, 0.35);
+      font-style: italic;
+      margin-top: 2px;
+      font-family: var(--FB);
+      word-break: break-word;
+    }
+
+    .post-period {
+      font-family: monospace;
+      font-size: clamp(9px, 2vw, 10px);
+      letter-spacing: 1px;
+      color: var(--orange);
+      white-space: nowrap;
+      text-align: right;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .promo-after {
+      margin-top: clamp(24px, 5vw, 36px);
+      padding: clamp(20px, 4vw, 28px) clamp(16px, 4vw, 24px);
+      background: rgba(232, 93, 4, 0.07);
+      border: 1px solid rgba(232, 93, 4, 0.2);
+      border-top: 3px solid var(--orange);
+      width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
+    }
+
+    .promo-after h4 {
+      font-family: var(--F);
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      color: var(--blanc);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .promo-after h4 em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    .promo-consult {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .promo-consult li {
+      font-size: clamp(12px, 2.5vw, 13px);
+      color: rgba(255, 255, 255, 0.6);
+      position: relative;
+      padding-left: 18px;
+      line-height: 1.65;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .promo-consult li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 0.24em;
+      color: var(--orange);
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .promo-consult li strong {
+      color: var(--blanc);
+      font-weight: 600;
+    }
+
+    /* ✅ FIX: Chiffres clés responsive */
+    .promo-key-numbers {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: clamp(18px, 4vw, 28px);
+    }
+
+    .promo-kn {
+      background: var(--gris-mid);
+      padding: clamp(14px, 3vw, 20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+      flex: 1 1 clamp(80px, 28%, 140px);
+    }
+
+    .promo-kn .kn-val {
+      font-family: var(--F);
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .promo-kn .kn-label {
+      font-family: var(--FC);
+      font-size: clamp(9px, 2vw, 10px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gris-text);
+      margin-top: 6px;
+    }
+
+    .promo-note {
+      margin-top: clamp(14px, 3vw, 20px);
+      padding: clamp(14px, 3vw, 16px) clamp(14px, 3vw, 20px);
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--orange);
+      font-size: clamp(12px, 2vw, 13px);
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .promo-note strong {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #030303;
+      border-top: 1px solid rgba(232, 93, 4, 0.15);
+      padding: clamp(40px, 8vw, 56px) 0 clamp(20px, 4vw, 28px);
+      /* ✅ FIX: padding-bottom safe-area pour iPhone avec barre de geste */
+      padding-bottom: calc(clamp(20px, 4vw, 28px) + var(--safe-bottom));
+    }
+
+    /* ✅ FIX: Footer grid responsive */
+    .footer-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(24px, 5vw, 36px);
+      margin-bottom: clamp(28px, 6vw, 44px);
+    }
+
+    .footer-brand {
+      flex: 2 1 clamp(200px, 40%, 300px);
+      min-width: 0;
+    }
+
+    .footer-brand .logo {
+      font-family: 'Black Ops One', fantasy, sans-serif;
+      font-size: clamp(1.4rem, 4vw, 1.7rem);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .footer-brand p {
+      font-size: clamp(12px, 2vw, 13px);
+      color: var(--gris-text);
+      line-height: 1.7;
+    }
+
+    .footer-col {
+      flex: 1 1 clamp(120px, 20%, 160px);
+      min-width: 0;
+    }
+
+    .footer-col h5 {
+      font-family: var(--FC);
+      font-size: clamp(10px, 2vw, 11px);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-col ul a {
+      font-size: clamp(12px, 2vw, 13px);
+      color: var(--gris-text);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: block;
+      /* ✅ FIX: min-height pour facilité le tap mobile */
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-col ul a:hover {
+      color: var(--orange);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: clamp(16px, 3vw, 22px);
+      display: -webkit-flex;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-bottom p {
+      font-size: clamp(11px, 2vw, 12px);
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .footer-bottom em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    /* ============================================================
+       ANIMATIONS FADE-IN
+    ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ✅ FIX: Désactiver les animations pour les utilisateurs qui préfèrent moins de mouvement */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .ticker-track {
+        animation-duration: 60s;
+      }
+    }
+
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       MEDIA QUERIES — RESPONSIVE COMPLET
+    ============================================================ */
+
+    /* === TABLETTE LARGE (1024px et moins) === */
+    @media (max-width: 1024px) {
+      .nav-links {
+        gap: 16px;
+      }
+
+      .nav-links a {
+        font-size: 10px;
+      }
+    }
+
+    /* === TABLETTE (768px et moins) === */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: -webkit-flex;
+        display: flex;
+      }
+
+      /* ✅ FIX: Hero stats en 2 colonnes sur mobile */
+      .hero-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      /* ✅ FIX: Hero actions en colonne sur mobile */
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      /* ✅ FIX: Services — 1 colonne sur mobile */
+      .services-grid {
+        flex-direction: column;
+      }
+
+      .svc-card {
+        flex: none;
+        width: 100%;
+        min-height: clamp(260px, 55vw, 380px);
+      }
+
+      /* ✅ FIX: Secteurs — 2 colonnes sur tablette */
+      .sect-card {
+        flex: 1 1 calc(50% - 2px);
+      }
+
+      /* ✅ FIX: EPI — 2 colonnes */
+      .epi-card {
+        flex: 1 1 calc(50% - 2px);
+      }
+
+      /* ✅ FIX: Contact — 1 colonne */
+      .contact-left,
+      .contact-form {
+        flex: none;
+        width: 100%;
+      }
+
+      /* ✅ FIX: Promoteur — 1 colonne */
+      .promo-photo {
+        flex: none;
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      .promo-content {
+        flex: none;
+        width: 100%;
+      }
+
+      /* ✅ FIX: Footer — 2 colonnes */
+      .footer-brand {
+        flex: none;
+        width: 100%;
+      }
+
+      .footer-col {
+        flex: 1 1 calc(50% - 12px);
+      }
+
+      /* Valeurs — 1 colonne */
+      .val-item {
+        flex: none;
+        width: 100%;
+      }
+
+      .promo-after {
+        padding: 18px 14px;
+      }
+
+      .promo-consult li {
+        padding-left: 16px;
+      }
+    }
+
+    /* === MOBILE (480px et moins) === */
+    @media (max-width: 480px) {
+      /* ✅ FIX: Hero title encore plus petit sur tout petits écrans */
+      .hero-title {
+        font-size: clamp(2.4rem, 12vw, 3.5rem);
+      }
+
+      /* ✅ FIX: Secteurs — 1 colonne sur petit mobile */
+      .sect-card {
+        flex: none;
+        width: 100%;
+      }
+
+      /* ✅ FIX: EPI — 1 colonne sur petit mobile */
+      .epi-card {
+        flex: none;
+        width: 100%;
+      }
+
+      /* ✅ FIX: Réalisations — 1 colonne */
+      .real-card {
+        flex: none;
+        width: 100%;
+      }
+
+      /* ✅ FIX: Témoignages — 1 colonne */
+      .temo-card {
+        flex: none;
+        width: 100%;
+      }
+
+      /* ✅ FIX: Trust bar — scroll horizontal si trop large */
+      .trust-bar {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* ✅ FIX: Chiffres clés — 1 colonne */
+      .promo-kn {
+        flex: 1 1 100%;
+      }
+
+      /* ✅ FIX: Footer — 1 colonne */
+      .footer-col {
+        flex: none;
+        width: 100%;
+      }
+
+      .promo-after h4 {
+        font-size: 1.05rem;
+      }
+
+      .promo-consult li {
+        font-size: 12px;
+      }
+
+      /* ✅ FIX: Real metrics — colonne */
+      .real-metrics {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      /* ✅ FIX: form-row — 1 colonne sur mobile */
+      .form-row {
+        flex-direction: column;
+      }
+
+      .form-row .form-group {
+        flex: none;
+        width: 100%;
+      }
+    }
+
+    /* === TRÈS PETIT MOBILE (360px et moins) === */
+    @media (max-width: 360px) {
+      .hero-title {
+        font-size: clamp(2rem, 13vw, 2.8rem);
+      }
+
+      .hero-badge {
+        font-size: 8px;
+        letter-spacing: 2px;
+      }
+
+      .stat-num {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* === DESKTOP LARGE (1400px et plus) === */
+    @media (min-width: 1400px) {
+      .container {
+        max-width: 1320px;
+      }
+    }
+
+    /* ✅ FIX: Correction spécifique pour les iPad en mode paysage */
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+      .hero-stats {
+        display: flex;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#accueil" class="logo">CA<em>2</em>R</a>
+    <ul class="nav-links">
+      <li><a href="#apropos">À Propos</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#secteurs">Secteurs</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#securite">Sécurité</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#promoteur">Promoteur</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-orange" id="nav-cta"> Devis Gratuit</a>
+    <button class="hamburger" id="hbg" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mob-menu" role="navigation">
+    <a href="#apropos"      onclick="cm()">À Propos</a>
+    <a href="#services"     onclick="cm()">Services</a>
+    <a href="#secteurs"     onclick="cm()">Secteurs</a>
+    <a href="#realisations" onclick="cm()">Réalisations</a>
+    <a href="#securite"     onclick="cm()">Sécurité</a>
+    <a href="#contact"      onclick="cm()">Contact &amp; Devis</a>
+    <a href="#promoteur"    onclick="cm()">Promoteur</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="accueil">
+  <div class="hero-img"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">Porto-Novo, Bénin · Afrique de l'Ouest</div>
+      <h1 class="hero-title">
+        <span class="l1">CONSTRUCTION d'AFRIQUE</span>
+        <span class="l2">REVÊTEMENT</span>
+        <span class="l3">RÉFRA</span>
+      </h1>
+      <p class="hero-sub">Nous protégeons vos installations industrielles contre les températures extrêmes. <strong>Installation, maintenance, diagnostic</strong> — des solutions durables pour l'industrie africaine.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-orange">Demander un devis gratuit</a>
+        <a href="#services" class="btn btn-ghost">Nos services →</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">30+</div><div class="stat-lbl">Ans d'expérience<br>Promoteur CA2R</div></div>
+        <div><div class="stat-num">7+</div><div class="stat-lbl">Ans d'expérience<br>de l'équipe</div></div>
+        <div><div class="stat-num">80+</div><div class="stat-lbl">Projets réalisés</div></div>
+        <div><div class="stat-num">6</div><div class="stat-lbl">Pays d'intervention</div></div>
+        <div><div class="stat-num">100%</div><div class="stat-lbl">Satisfaction client</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Métallurgie ◆</span><span class="ticker-item">Cimenteries ◆</span><span class="ticker-item">Pétrole &amp; Gaz ◆</span><span class="ticker-item">Énergie ◆</span><span class="ticker-item">Agroalimentaire ◆</span><span class="ticker-item">Revêtement Réfractaire ◆</span><span class="ticker-item">Béton Réfractaire ◆</span><span class="ticker-item">Briques Réfractaires ◆</span>
+    <span class="ticker-item">Métallurgie ◆</span><span class="ticker-item">Cimenteries ◆</span><span class="ticker-item">Pétrole &amp; Gaz ◆</span><span class="ticker-item">Énergie ◆</span><span class="ticker-item">Agroalimentaire ◆</span><span class="ticker-item">Revêtement Réfractaire ◆</span><span class="ticker-item">Béton Réfractaire ◆</span><span class="ticker-item">Briques Réfractaires ◆</span>
+  </div>
+</div>
+
+<!-- À PROPOS -->
+<section id="apropos">
+  <div class="container">
+    <div class="apropos-grid">
+      <div class="apropos-img-wrap fade-in">
+        <img src="image/IMG-20260413-WA0039.jpg" alt="Technicien réfractaire CA2R en intervention" loading="lazy" />
+        <div class="img-badge">✔ Certifiés &amp; Expérimentés</div>
+      </div>
+      <div class="apropos-text fade-in d2">
+        <span class="tag">Qui sommes-nous</span>
+        <h2 class="h2">L'expertise <em>réfractaire</em><br>au cœur de l'Afrique</h2><br/>
+        <p>Fondée à <strong>Porto-Novo</strong>, CA2R est la référence en expertise de Construction Afrique et Revêtement Réfractaire en Afrique de l'Ouest. Nous accompagnons les industriels dans la protection et la durabilité de leurs équipements soumis à de hautes températures.</p>
+        <p>Nos ingénieurs certifiés interviennent sur tous types d'installations : <strong>fours industriels, chaudières, réacteurs, fourneaux de fusion</strong> et bien plus encore.</p>
+        <p>Nous importons et fournissons des matériaux de première qualité : <strong>béton réfractaire, briques réfractaires</strong>, mortiers et isolants thermiques soigneusement sélectionnés.</p>
+        <div class="valeurs">
+          <div class="val-item"><h4>Excellence</h4><p>Standards internationaux sur chaque chantier</p></div>
+          <div class="val-item"><h4>Réactivité</h4><p>Intervention rapide pour limiter vos arrêts</p></div>
+          <div class="val-item"><h4>Sécurité</h4><p>Protocoles stricts pour vos sites et nos équipes</p></div>
+          <div class="val-item"><h4>Local</h4><p>Expertise locale, réseau régional AOF</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="tag">Ce que nous faisons</span>
+      <h2 class="h2">Nos <em>services</em></h2>
+      <p>Des solutions complètes pour protéger, maintenir et optimiser vos équipements thermiques industriels.</p>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card fade-in d1">
+      <div class="svc-bg bg-s1"></div><div class="svc-overlay"></div>
+      <div class="svc-content">
+        <div class="svc-num">01</div>
+        <h3>Installation Réfractaire</h3>
+        <p>Conception et pose sur mesure pour tous types de fours, chaudières et équipements haute température.</p>
+        <ul class="svc-list"><li>Étude technique préalable gratuite</li><li>Matériaux adaptés à vos températures</li><li>Pose par techniciens certifiés</li></ul>
+      </div>
+    </div>
+    <div class="svc-card fade-in d2">
+      <div class="svc-bg bg-s2"></div><div class="svc-overlay"></div>
+      <div class="svc-content">
+        <div class="svc-num">02</div>
+        <h3>Maintenance &amp; Réparation</h3>
+        <p>Interventions rapides pour réparer vos revêtements endommagés et prolonger la durée de vie de vos installations.</p>
+        <ul class="svc-list"><li>Diagnostic sur site en 48h</li><li>Réparations partielles ou totales</li><li>Contrats de maintenance annuels</li></ul>
+      </div>
+    </div>
+    <div class="svc-card fade-in d3">
+      <div class="svc-bg bg-s3"></div><div class="svc-overlay"></div>
+      <div class="svc-content">
+        <div class="svc-num">03</div>
+        <h3>Diagnostic Thermique</h3>
+        <p>Analyse de l'état de vos revêtements par caméra thermique et expertise technique pour anticiper les pannes.</p>
+        <ul class="svc-list"><li>Thermographie infrarouge</li><li>Rapport détaillé + recommandations</li><li>Suivi dans le temps</li></ul>
+      </div>
+    </div>
+    <div class="svc-card fade-in d4">
+      <div class="svc-bg bg-s4"></div><div class="svc-overlay"></div>
+      <div class="svc-content">
+        <div class="svc-num">04</div>
+        <h3>Formation Continue</h3>
+        <p>Programmes de formation pour vos équipes sur l'installation, la maintenance et la sécurité des revêtements réfractaires.</p>
+        <ul class="svc-list"><li>Formations théoriques et pratiques</li><li>Ateliers interactifs</li><li>Certifications reconnues</li></ul>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:clamp(28px,5vw,44px);padding:0 clamp(16px,4vw,24px);" class="fade-in">
+    <a href="#contact" class="btn btn-orange">Obtenir un devis pour votre projet</a>
+  </div>
+</section>
+
+<!-- SECTEURS -->
+<section id="secteurs">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="tag">Industries servies</span>
+      <h2 class="h2">Nos <em>secteurs</em> d'activité</h2>
+      <p>CA2R intervient dans tous les secteurs industriels qui utilisent des équipements à haute température.</p>
+    </div>
+    <div class="secteurs-grid">
+      <div class="sect-card fade-in d1"><div class="sect-bg bg-sec1"></div><div class="sect-overlay"></div><div class="sect-content"><span class="sect-icon"></span><h3>Métallurgie</h3><p>Hauts-fourneaux, convertisseurs, fours de fusion et traitement thermique</p></div></div>
+      <div class="sect-card fade-in d2"><div class="sect-bg bg-sec2"></div><div class="sect-overlay"></div><div class="sect-content"><span class="sect-icon"></span><h3>Cimenteries</h3><p>Fours rotatifs, préchauffeurs, refroidisseurs et équipements annexes</p></div></div>
+      <div class="sect-card fade-in d3"><div class="sect-bg bg-sec3"></div><div class="sect-overlay"></div><div class="sect-content"><span class="sect-icon"></span><h3>Pétrole &amp; Gaz</h3><p>Reformeurs, unités de craquage, torchères et équipements de raffinage</p></div></div>
+      <div class="sect-card fade-in d4"><div class="sect-bg bg-sec4"></div><div class="sect-overlay"></div><div class="sect-content"><span class="sect-icon"></span><h3>Énergie</h3><p>Chaudières, turbines, centrales thermiques et incinérateurs industriels</p></div></div>
+      <div class="sect-card fade-in d1"><div class="sect-bg bg-sec5"></div><div class="sect-overlay"></div><div class="sect-content"><span class="sect-icon"></span><h3>Agroalimentaire</h3><p>Fours de séchage, cuiseurs industriels et équipements de stérilisation</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SÉCURITÉ -->
+<section id="securite">
+  <div class="container">
+    <div class="securite-hero fade-in">
+      <img src="image/IMG_20260503_163645_772.jpg" alt="Sécurité sur chantier réfractaire CA2R" loading="lazy" />
+      <div class="securite-hero-text">
+        <span class="tag" style="font-size:clamp(10px,2.5vw,12px);letter-spacing:4px;">Notre engagement</span>
+        <h2 class="h2">La <em>sécurité est la priorité</em> des priorités chez CA<em>2</em>R</h2>
+        <p>Chacun est responsable de sa propre sécurité et de celle des autres.</p>
+      </div>
+    </div>
+    <div class="alert-bar fade-in">
+      <span style="font-size:center clamp(1.4rem,4vw,1.8rem);flex-shrink:0;">⚠️</span>
+      <p><strong>Aucun compromis n'est accepté sur la sécurité</strong>. Chaque technicien est formé et équipé avant d'entrer sur un chantier.</p>
+    </div>
+    <div class="epi-grid">
+      <div class="epi-card fade-in d1">
+        <div class="epi-img"><img src="https://tse3.mm.bing.net/th/id/OIP.dhX8vkuDhJYHe_X1iDz9sAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Combinaison thermique de protection" loading="lazy" /></div>
+        <div class="epi-body"><h4>Combinaison Thermique</h4><p>Vêtement intégral en fibre aramide résistant aux flammes et projections. Protège tout le corps contre les rayonnements thermiques intenses jusqu'à 1 000°C.</p></div>
+      </div>
+      <div class="epi-card fade-in d2">
+        <div class="epi-img"><img src="https://tse4.mm.bing.net/th/id/OIP.OT9PbXXDD2fPKDu3aelwHQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Casque industriel avec visière" loading="lazy" /></div>
+        <div class="epi-body"><h4>Casque avec Visière</h4><p>Casque industriel équipé d'une visière en polycarbonate résistante à la chaleur. Protège la tête, le visage et les yeux contre les projections et UV thermiques.</p></div>
+      </div>
+      <div class="epi-card fade-in d3">
+        <div class="epi-img"><img src="https://newavetc.com/wp-content/uploads/2023/08/PIP-16-X585-M-400x400.webp" alt="Gants de protection thermique" loading="lazy" /></div>
+        <div class="epi-body"><h4>Gants Résistants</h4><p>Gants de protection thermique en cuir bovin traité, supportant des contacts avec des surfaces à plus de 500°C. Indispensables pour la manipulation des briques réfractaires.</p></div>
+      </div>
+      <div class="epi-card fade-in d4">
+        <div class="epi-img"><img src="https://rafitextil.com/1995-thickbox_default/botte-de-securite-s1-src-serie-3bot200n.jpg" alt="Bottes de sécurité industrielles" loading="lazy" /></div>
+        <div class="epi-body"><h4>Bottes de Sécurité</h4><p>Bottes à embouts en acier renforcé, semelles anti-perforation et résistantes à la chaleur. Protègent contre les objets lourds, projections et surfaces brûlantes.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section id="realisations">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="tag">Notre portfolio</span>
+      <h2 class="h2">Nos <em>réalisations</em></h2>
+      <p>Des projets concrets, réalisés avec rigueur, dans les délais et selon les normes les plus exigeantes.</p>
+    </div>
+    <div class="real-grid">
+      <div class="real-card fade-in d1">
+        <div class="real-thumb">
+          <img src="image/IMG_20260430_131716_393.jpg" alt="Four à arc électrique Abidjan" loading="lazy" />
+          <span class="real-tag">SCB-LAFARGE — Industrie Cimentière</span>
+        </div>
+        <div class="real-body">
+          <h3>Maintenance Réfractaire &amp; Travaux Industriels</h3>
+          <div class="real-loc">📍 Onigbolo, Bénin</div>
+          <p>Réalisation des travaux réfractaires sur les installations industrielles de SCB-LAFARGE depuis 2019 : pose annuelle de briques réfractaires dans les fours, coulage de béton réfractaire dans les cyclones, refroidisseurs et interventions au niveau du broyeur.</p>
+          <div class="real-metrics">
+            <div class="metric"><div class="val">2019</div><div class="lbl">Début de<br>collaboration</div></div>
+            <div class="metric"><div class="val">+2</div><div class="lbl">Campagnes<br>annuelles réalisées</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="real-card fade-in d2">
+        <div class="real-thumb">
+          <img src="https://tse4.mm.bing.net/th/id/OIP.qjM7W8V-RvbPxAlJsvZ7QQHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Four rotatif cimenterie Lomé" loading="lazy" />
+          <span class="real-tag">Heidelberg Togo — Industrie Cimentière</span>
+        </div>
+        <div class="real-body">
+          <h3>Béton Réfractaire &amp; Maintenance Industrielle</h3>
+          <div class="real-loc">📍 Tabligbo, Togo</div>
+          <p>Réalisation de travaux de coulage de béton réfractaire vibré et gunité sur différentes installations industrielles : cyclones, précalcinateur, boîte à fumée et autres zones soumises à de fortes contraintes thermiques.</p>
+          <div class="real-metrics">
+            <div class="metric"><div class="val">Béton vibré</div><div class="lbl">Application haute résistance thermique</div></div>
+            <div class="metric"><div class="val">Gunité</div><div class="lbl">Projection et réparation industrielle</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="real-card fade-in d3">
+        <div class="real-thumb">
+          <img class="real-img" src="image/IMG-20260218-WA0351.jpg" alt="Unité de craquage Ghana" loading="lazy" />
+          <span class="real-tag">CBI Ghana — Industrie Cimentière</span>
+        </div>
+        <div class="real-body">
+          <h3>Maintenance Réfractaire &amp; Travaux Industriels</h3>
+          <div class="real-loc">📍 Tema, Ghana</div>
+          <p>Interventions spécialisées en maintenance réfractaire et travaux industriels sur installations cimentières : pose de briques réfractaires, coulage de béton réfractaire et maintenance des équipements soumis à de hautes températures.</p>
+          <div class="real-metrics">
+            <div class="metric"><div class="val">Maintenance</div><div class="lbl">Interventions techniques spécialisées</div></div>
+            <div class="metric"><div class="val">Béton &amp; briques</div><div class="lbl">Solutions haute performance thermique</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section id="temoignages">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="tag">Ce que disent nos clients</span>
+      <h2 class="h2">La confiance de nos <em>partenaires</em></h2>
+    </div>
+    <div class="temo-grid">
+      <div class="temo-card fade-in d1">
+        <p>CA2R a remplacé notre ancien prestataire avec brio. L'équipe est sérieuse, ponctuelle et le revêtement tient depuis plus de 3 ans sans la moindre défaillance. Je recommande sans hésitation.</p>
+        <div class="temo-author"><div class="author-av">KD</div><div class="author-info"><h5>Kouassi Djangban</h5><span>Directeur Technique · Acier Ivoire SA, Abidjan</span></div></div>
+      </div>
+      <div class="temo-card fade-in d2">
+        <p>Intervention rapide sur notre four rotatif en période critique. Grâce à leur réactivité, nous avons limité l'arrêt à 7 jours au lieu des 21 prévus. Un gain financier considérable pour notre cimenterie.</p>
+        <div class="temo-author"><div class="author-av">AM</div><div class="author-info"><h5>Amédée Mensah</h5><span>Chef de Production · Ciment Togo Industries, Lomé</span></div></div>
+      </div>
+      <div class="temo-card fade-in d3">
+        <p>Nous leur faisons confiance depuis 5 ans. Le diagnostic thermique annuel nous a permis d'anticiper deux pannes majeures. Un investissement qui se rembourse clairement et rapidement.</p>
+        <div class="temo-author"><div class="author-av">FB</div><div class="author-info"><h5>Fatou Baldé</h5><span>Responsable HSE · EnergieSen, Dakar</span></div></div>
+      </div>
+    </div>
+    <div class="trust-bar fade-in">
+      <div class="trust-item"><span>✅ Techniciens certifiés</span></div>
+      <div class="trust-item"><span>✅ Devis gratuit sous 48h</span></div>
+      <div class="trust-item"><span>✅ Garantie sur les travaux</span></div>
+      <div class="trust-item"><span>✅ Intervention 6 pays AOF</span></div>
+      <div class="trust-item"><span>✅ Disponibles 24/7 en urgence</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="tag">Parlons de votre projet</span>
+      <h2 class="h2">Demandez votre <em>devis</em> gratuitement</h2>
+      <p>Décrivez votre besoin et nous vous répondons sous 48h avec une proposition détaillée.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-left fade-in d1">
+        <div class="contact-img">
+          <img src="image/IMG-20260330-WA0083.jpg" alt="Usine industrielle CA2R" loading="lazy" />
+        </div>
+        <div class="contact-info">
+          <h3>Nous contacter</h3>
+          <p>Notre équipe est disponible pour toutes vos questions techniques et commerciales.</p>
+          <div class="c-line"><div class="c-icon">📍</div><div class="c-text"><h4>Siège</h4><p>Porto-novo, Bénin</p></div></div>
+          <div class="c-line"><div class="c-icon">📞</div><div class="c-text"><h4>Téléphone</h4><a href="tel:+2290197959550">+229 01 97 95 95 50</a></div></div>
+          <div class="c-line"><div class="c-icon">✉️</div><div class="c-text"><h4>Email</h4><a href="mailto:ca2r.benin@gmail.com">ca2r.benin@gmail.com</a></div></div>
+          <div class="c-line"><div class="c-icon">🕐</div><div class="c-text"><h4>Horaires</h4><p>Lun–Ven : 8h–17h30 · Sam : 9h–13h</p></div></div>
+          <a href="https://wa.me/2290197959550?text=Bonjour%2C%20je%20souhaite%20un%20devis%20r%C3%A9fractaire." class="whatsapp-btn" target="_blank" rel="noopener noreferrer">💬 Écrire sur WhatsApp</a>
+        </div>
+      </div>
+      <div class="contact-form fade-in d2">
+        <h3>Formulaire de devis</h3>
+        <p class="form-sub">Tous les champs * sont obligatoires pour mieux vous conseiller.</p>
+        <div id="devis-form">
+          <div class="form-row">
+            <div class="form-group"><label>Votre nom *</label><input type="text" id="nom" placeholder="Jean Dupont" autocomplete="name" /></div>
+            <div class="form-group"><label>Entreprise *</label><input type="text" id="entreprise" placeholder="Nom de votre société" autocomplete="organization" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Email *</label><input type="email" id="email" placeholder="vous@entreprise.com" autocomplete="email" inputmode="email" /></div>
+            <div class="form-group"><label>Téléphone</label><input type="tel" id="tel" placeholder="+229 00 00 00 00" autocomplete="tel" inputmode="tel" /></div>
+          </div>
+          <div class="form-group">
+            <label>Service souhaité *</label>
+            <select id="service">
+              <option value="">— Sélectionnez un service —</option>
+              <option>Installation de revêtement réfractaire</option>
+              <option>Maintenance &amp; réparation</option>
+              <option>Inspection-Consultation &amp; diagnostic</option>
+              <option>Fourniture de matériaux réfractaires</option>
+              <option>Contrat de maintenance annuel</option>
+              <option>Autre / Plusieurs services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Description de votre projet *</label>
+            <textarea id="message" placeholder="Décrivez votre installation, le type d'équipement, les températures, la superficie à traiter..."></textarea>
+          </div>
+          <button class="btn btn-orange" onclick="envoyerDevis()" style="width:100%;justify-content:center;">Envoyer ma demande de devis</button>
+        </div>
+        <div id="form-success">
+          <div class="s-icon">✅</div>
+          <h4>Demande envoyée !</h4>
+          <p>Merci ! Notre équipe vous contactera sous 48h ouvrables avec une proposition personnalisée.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMOTEUR -->
+<section id="promoteur">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="tag">Qui dirige CA2R</span>
+      <h2 class="h2">Bibliographie du <em>Promoteur</em></h2>
+      <p>Un parcours de 36 ans dans l'industrie réfractaire et cimentière en Afrique de l'Ouest.</p>
+    </div>
+    <div class="promo-grid">
+      <div class="promo-photo fade-in">
+        <img src="image/3530c661-0397.png" alt="Promoteur de CA2R – Expert en revêtement réfractaire" loading="lazy" />
+        <div class="promo-exp-badge">36 ans<span>d'expérience réfractaire</span><br>Pascal Boladji HOUSSOU</div>
+      </div>
+      <div class="promo-content fade-in d2">
+        <span class="tag">Parcours professionnel</span>
+        <h2 class="h2">Expert <em>reconnu</em><br>en industrie cimentière</h2>
+        <p class="promo-name">Promoteur &amp; Fondateur · CA2R</p>
+        <p class="promo-intro">
+          Avec <strong>33 ans de carrière en cimenterie</strong> avant la retraite,
+          dont <strong>plus de 25 ans dédiés aux travaux réfractaires</strong>,
+          le fondateur de CA2R est l'un des experts les plus expérimentés
+          de la région Afrique de l'Ouest dans ce domaine.
+        </p>
+        <div class="promo-company">
+          <div class="company-header">
+            <div class="company-logo-badge">SCO</div>
+            <div>
+              <div class="company-name">Société des Ciments d'Onigbolo</div>
+              <div class="company-sub">Bénin · 1982 – 2000</div>
+            </div>
+          </div>
+          <ul class="promo-posts">
+            <li>
+              <div class="post-dot"></div>
+              <div class="post-info">
+                <div class="post-title">Opérateur Four</div>
+                <div class="post-title-en">Kiln Burner</div>
+              </div>
+              <div class="post-period">1982 – 1989<br>7 ans</div>
+            </li>
+            <li>
+              <div class="post-dot"></div>
+              <div class="post-info">
+                <div class="post-title">Chef de Quart</div>
+                <div class="post-title-en">Shift Supervisor</div>
+              </div>
+              <div class="post-period">1989 – 1998<br>9 ans</div>
+            </li>
+            <li>
+              <div class="post-dot"></div>
+              <div class="post-info">
+                <div class="post-title">Adjoint Chef Service Production</div>
+                <div class="post-title-en">Production Manager Assistant</div>
+              </div>
+              <div class="post-period">1998 – 2000<br>2 ans</div>
+            </li>
+          </ul>
+        </div>
+        <div class="promo-company">
+          <div class="company-header">
+            <div class="company-logo-badge">SCB</div>
+            <div>
+              <div class="company-name">SCB-Lafarge</div>
+              <div class="company-sub">Bénin · 2000 – 2015</div>
+            </div>
+          </div>
+          <ul class="promo-posts">
+            <li>
+              <div class="post-dot"></div>
+              <div class="post-info">
+                <div class="post-title">Adjoint Chef Production</div>
+                <div class="post-title-en">Production Manager Assistant</div>
+              </div>
+              <div class="post-period">2000 – 2001<br>1 an</div>
+            </li>
+            <li>
+              <div class="post-dot"></div>
+              <div class="post-info">
+                <div class="post-title">Chef Service Production</div>
+                <div class="post-title-en">Production Manager</div>
+              </div>
+              <div class="post-period">2001 – 2013<br>13 ans</div>
+            </li>
+            <li>
+              <div class="post-dot"></div>
+              <div class="post-info">
+                <div class="post-title">Responsable Écologie Industrielle</div>
+                <div class="post-title-en">Industrial Ecology Manager — Combustibles alternatifs</div>
+              </div>
+              <div class="post-period">2013 – 2015<br>2 ans</div>
+            </li>
+            <li>
+              <div class="post-dot" style="background:#aaa;"></div>
+              <div class="post-info">
+                <div class="post-title" style="color:rgba(255,255,255,.4);">Retraite</div>
+                <div class="post-title-en">Retirement</div>
+              </div>
+              <div class="post-period" style="color:rgba(255,255,255,.3);">2015</div>
+            </li>
+          </ul>
+        </div>
+        <div class="promo-key-numbers">
+          <div class="promo-kn"><div class="kn-val">33</div><div class="kn-label">Ans en cimenterie</div></div>
+          <div class="promo-kn"><div class="kn-val">36</div><div class="kn-label">Ans en réfractaire</div></div>
+          <div class="promo-kn"><div class="kn-val">2019</div><div class="kn-label">Création de CA2R</div></div>
+        </div>
+        <div class="promo-after">
+          <h4>Activités <em>après la retraite</em> (2015 – aujourd'hui)</h4>
+          <ul class="promo-consult">
+            <li>Dès 2015, sollicité par des <strong>compagnies européennes de fabrication de briques</strong> pour les représenter en Afrique de l'Ouest.</li>
+            <li><strong>2015 – 2019 :</strong> Consultation technique et supervision de chantiers réfractaires au 
+                <strong>Sénégal</strong> (SOCOCIM, Ciment du Sahel, Dangote), au <strong>Bénin</strong> (SCB-Lafarge, NOCIBE) et au <strong>Togo</strong> (SCANTOGO / Heidelberg).</li>
+            <li><strong>2019 :</strong> Fondation de <strong>CA2R</strong> — sa propre équipe spécialisée dans la pose et la maintenance des revêtements réfractaires.</li>
+          </ul>
+        </div>
+        <div class="promo-note">
+          <strong>Note :</strong> Dès son poste d'opérateur four, le fondateur s'est passionné pour les travaux de pose réfractaire. Il a lui-même constitué et dirigé l'équipe interne de pose réfractaire tout au long de sa carrière — accumulant ainsi <strong>plus de 25 ans d'expérience dans le domaine avant même la retraite</strong>, et <strong>36 ans au total</strong> à ce jour.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#accueil" class="logo">CA<em>2</em>R</a>
+        <p>Intervenant avec une équipe formée dans les domaines du revêtement réfractaire, du béton réfractaire et de la maintenance thermique industrielle au Bénin et en Afrique de l'Ouest depuis plus de 07 ans.</p>
+        <p style="margin-top:10px;font-size:12px;color:#555;">📍 Porto-Novo, Bénin</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#services">Installation réfractaire</a></li><li><a href="#services">Maintenance &amp; réparation</a></li><li><a href="#services">Diagnostic thermique</a></li><li><a href="#services">Fourniture matériaux</a></li></ul></div>
+      <div class="footer-col"><h5>Secteurs</h5><ul><li><a href="#secteurs">Métallurgie</a></li><li><a href="#secteurs">Cimenteries</a></li><li><a href="#secteurs">Pétrole &amp; Gaz</a></li><li><a href="#secteurs">Énergie</a></li><li><a href="#secteurs">Agroalimentaire</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+2290197959550">+229 01 97 95 95 50</a></li><li><a href="mailto:carr.benin@gmail.com">Email</a></li><li><a href="#contact">Demander un devis</a></li><li><a href="https://wa.me/2290197959550" target="_blank" rel="noopener noreferrer">WhatsApp</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 CA<em>2</em>R. Tous droits réservés.</p>
+      <p>Revêtement réfractaire · Béton réfractaire · <em>Porto-Novo, Bénin</em></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ✅ FIX: Menu hamburger avec aria-expanded pour l'accessibilité
+  var hbg = document.getElementById('hbg');
+  var mobMenu = document.getElementById('mob-menu');
+  
+  hbg.addEventListener('click', function() {
+    var isOpen = mobMenu.classList.toggle('open');
+    hbg.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    // Animation hamburger → croix
+    var spans = hbg.querySelectorAll('span');
+    if (isOpen) {
+      spans[0].style.cssText = 'transform: translateY(7px) rotate(45deg)';
+      spans[1].style.cssText = 'opacity: 0';
+      spans[2].style.cssText = 'transform: translateY(-7px) rotate(-45deg)';
+    } else {
+      spans[0].style.cssText = '';
+      spans[1].style.cssText = '';
+      spans[2].style.cssText = '';
+    }
+  });
+
+  function cm() {
+    mobMenu.classList.remove('open');
+    hbg.setAttribute('aria-expanded', 'false');
+    var spans = hbg.querySelectorAll('span');
+    spans[0].style.cssText = '';
+    spans[1].style.cssText = '';
+    spans[2].style.cssText = '';
+  }
+
+  // ✅ FIX: Fermer le menu si on clique en dehors
+  document.addEventListener('click', function(e) {
+    if (!nav.contains(e.target) && mobMenu.classList.contains('open')) {
+      cm();
+    }
+  });
+
+  // Bouton devis dans la nav (apparaît après scroll)
+  window.addEventListener('scroll', function() {
+    document.getElementById('nav-cta').style.display = window.scrollY > 120 ? 'inline-flex' : 'none';
+  }, { passive: true });
+
+  // Animations fade-in au scroll
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  
+  document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+
+  // Formulaire devis
+  function envoyerDevis() {
+    var nom = document.getElementById('nom').value.trim();
+    var ent = document.getElementById('entreprise').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var tel = document.getElementById('tel').value.trim();
+    var svc = document.getElementById('service').value;
+    var msg = document.getElementById('message').value.trim();
+
+    if (!nom || !ent || !email || !svc || !msg) {
+      alert('⚠️ Merci de remplir tous les champs obligatoires (*).');
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('⚠️ Email invalide.');
+      return;
+    }
+
+    if (typeof emailjs !== 'undefined') {
+      emailjs.send("service_b8c8i88", "template_j46zkir", {
+        nom: nom, entreprise: ent, email: email,
+        telephone: tel, service: svc, message: msg
+      }).then(function() {
+        document.getElementById('devis-form').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }, function() {
+        alert("❌ Erreur lors de l'envoi. Réessaie.");
+      });
+    } else {
+      // Fallback si EmailJS non chargé
+      document.getElementById('devis-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+  }
+
+  // Défilement fluide pour les liens internes
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var id = link.getAttribute('href');
+      if (id === '#') return;
+      var target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({
+          top: target.getBoundingClientRect().top + window.pageYOffset - 70,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init("H0FRfTMt1cfm593KY");
+    }
+  })();
+</script>
+
+</body>
+</html>
